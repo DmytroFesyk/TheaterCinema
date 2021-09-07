@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a performance</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Add a performance</h1>
+<form action="/performances/addNew" method="POST" th:object="${performance}" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}">
+    <p>Name of performance: <input type="text" th:field="*{title}"/></p>
+    <p>Description: <input type="text" th:field="*{description}"/></p>
+    <p>Duration time of film (minutes): <input type="number" th:field="*{durationTime}"/></p>
+    <p>Distribution Start: <input type="date" th:field="*{distributionStart}"/></p>
+    <p>Distribution Stop: <input type="date" th:field="*{distributionEnd}"/></p>
+    <p>Image: <input type="file" accept="image/bmp , image/png , image/jpeg" name="fileImage" id="fileImage"/></p>
+    <p><img alt="filmImage" id="preViewImage"></p>
+    <p>
+        <label>Actors:
+            <input type="checkbox" name="actors"
+                   th:each="actor : ${actors}"
+                   th:text="${actor.name}"
+                   th:value="${actor.id}"
+                   th:field="*{actors}"
+            />
+        </label>
+    </p>
+    <input type="submit"/>
+</form>
+<h1>Add an actor</h1>
+<form action="/performances/addNewActor" method="POST" th:object="${actor}">
+    <input type="hidden" th:field="*{id}">
+    <p>Name: <input type="text" th:field="*{name}"/></p>
+    <p>Surname: <input type="text" th:field="*{surname}"/></p>
+    <p>Birth Day: <input type="date" th:field="*{birthDay}"/></p>
+    <input type="submit"/>
+</form>
+<h1>Add new seance</h1>
+<form action="/performances/addNewSeance" method="POST" th:object="${seance}">
+    <input type="hidden" th:field="*{id}">
+    <p>Date: <input type="date" th:field="*{date}"/></p>
+    <!--        <p>Time: <input type="time" th:field="*{time}" /> </p>-->
+    <p>Performance: <select th:field="*{performance}">
+        <option th:each="p : ${performances}" th:value="${p.id}" th:text="${p.title}"/>
+    </select></p>
+    <input type="submit"/>
+</form>
+<script type="text/javascript" src="/js/preViewImage.js"></script>
+</body>
+
+</html>

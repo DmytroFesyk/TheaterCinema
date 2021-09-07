@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<header class="header">
+    <div class="container hero-schedule">
+        <nav class="nav">
+            <a href="/">
+                <img
+                        class="images"
+                        src="/images/deposicinema-logo.jpg"
+                        width="70"
+                />
+            </a>
+            <ul class="navigation">
+                <li class="navigation_title">
+                    <a class="navigation_title" href="/schedule.html">
+                        Schedule
+                    </a>
+                </li>
+                <li class="navigation_title">
+                    <a class="navigation_title" href="">Movies</a>
+                </li>
+                <li class="navigation_title">
+                    <a class="navigation_title" href="">Administration tools</a>
+                </li>
+            </ul>
+            <ul class="navigation_link">
+                <li class="navigation_title">
+                    <a class="navigation_title" href="">Sing inSing in</a>
+                </li>
+                <li class="navigation_title vl">
+                    <a class="navigation_title" href="">Join us</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+    <section class="section">
+        <ul  class="films">
+            <li th:each="performance : ${performances}"class="films_title">
+                <a th:href="@{/performances/{id}(id=${performance.performanceId})}">
+                    <img
+                            class="img"
+                            th:src="@{${performance.performanceImgLink}}"
+                            alt="Film View"
+                            style="width: 300px"
+                    />
+                </a>
+            </li>
+        </ul>
+
+        <a href="/performances/add">Add a performance</a>
+    </section>
+</main>
+</body>
+</html>
