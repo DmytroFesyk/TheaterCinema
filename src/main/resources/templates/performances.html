@@ -54,7 +54,7 @@
 </header>
 <main>
     <section class="section">
-        <ul  class="films">
+        <ul  class="performance-list">
             <li th:each="performance : ${performances}"class="films_title">
                 <a th:href="@{/performances/{id}(id=${performance.performanceId})}">
                     <img

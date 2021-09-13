@@ -13,6 +13,7 @@ data class Performance(
     val id: Long = 0,
     @Column(nullable = false)
     val title: String = "",
+    @Column(columnDefinition="TEXT")
     val description: String = "",
     @Column(nullable = false)
     val durationTime: Int = 0,
@@ -27,7 +28,7 @@ data class Performance(
         joinColumns = [JoinColumn(name = "performance_id")],
         inverseJoinColumns = [JoinColumn(name = "actors_id")]
     )
-    val actors: List<Actor>?=null
+    var actors: List<Actor> = emptyList()
 
     @OneToMany(mappedBy = "performance")
     lateinit var seances: List<Seance>

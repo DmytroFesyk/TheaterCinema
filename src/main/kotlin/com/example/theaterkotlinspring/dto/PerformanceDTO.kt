@@ -15,5 +15,5 @@ class PerformanceDTO  {
     var performanceDurationTime: Int = 0
     var performanceDistributionStart: Date? =null //Date(Calendar.getInstance().timeInMillis)
     var performanceDistributionEnd: Date? =null //Date(Calendar.getInstance().timeInMillis)
-    val performanceActors: MutableList<Actor> = mutableListOf()
+    var performanceActors:String=""
 }

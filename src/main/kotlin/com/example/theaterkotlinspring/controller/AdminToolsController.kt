@@ -39,10 +39,10 @@ class AdminToolsController(
 
     @GetMapping("/add")
     fun addPerformance(model: Model): String {
-        model.addAttribute("performance",Performance())
+       model.addAttribute("performance",Performance())
         model.addAttribute("actor", Actor())
         model.addAttribute("seance", Seance())
-        model.addAttribute("performances", performanceRepository.findAll())
+       model.addAttribute("performances", performanceRepository.findAll())
         model.addAttribute("actors", actorRepository.findAll())
         return "performances/add"
     }
