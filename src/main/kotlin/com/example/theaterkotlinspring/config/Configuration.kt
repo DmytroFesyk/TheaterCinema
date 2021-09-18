@@ -14,6 +14,8 @@ import javax.servlet.ServletContext
 @PropertySource("classpath:custom.properties")
 class Configuration : WebMvcConfigurer {
 
+
+
     @Value("\${directory.image.films}")
     lateinit var directory: String
 
@@ -22,7 +24,7 @@ class Configuration : WebMvcConfigurer {
 
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
 
-        val uploadPath: Path = Paths.get(rootDirectory+directory)
+        val uploadPath: Path = Paths.get(rootDirectory + directory)
         val path = uploadPath.toFile()
         registry.addResourceHandler("${directory}/**").addResourceLocations("file:${path}/")
     }

@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="navigation_title">
-                    <a class="navigation_title" href="">Movies</a>
+                    <a class="navigation_title" href="/performances">Movies</a>
                 </li>
                 <li class="navigation_title">
                     <a class="navigation_title" href="">Administration tools</a>
@@ -53,21 +53,48 @@
     </div>
 </header>
 <main>
-    <section class="section">
-        <ul  class="performance-list">
-            <li th:each="performance : ${performances}"class="films_title">
-                <a th:href="@{/performances/{id}(id=${performance.performanceId})}">
-                    <img
-                            class="img"
-                            th:src="@{${performance.performanceImgLink}}"
-                            alt="Film View"
-                            style="width: 300px"
-                    />
-                </a>
-            </li>
-        </ul>
+    <div th:object="${performance}" class="section-title">
+        <h1 th:text="${performance.performanceTitle}" class="title">performance title</h1>
+    </div>
+    <section th:object="${performance}" class="performance-section">
+        <div class="performance">
+            <img
+                    th:src="@{${performance.performanceImgLink}}"
+                    alt="Film View"
+                    style="width: 300px"
+            />
+            <div>
+                <ul>
+                    <li th:text="${performance.performanceDescription}" class="distribution-description">
+                        description
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="distribution-title ">
 
-        <a href="/performances/add">Add a performance</a>
+            <div>
+                <h3 class="distribution">Major actors</h3>
+                <p th:text="${performance.performanceActors}" class="distribution-title">
+                    Major actors name
+                </p>
+            </div>
+            <div>
+                <h3 class="distribution">Distribution</h3>
+                <p th:utext="|${'from '+performance.performanceDistributionStart}<br/>${'to '+performance.performanceDistributionEnd}|"
+                   class="distribution-title">distribution time</p>
+            </div>
+            <div>
+                <h3 class="distribution">Duration</h3>
+                <p th:text="${performance.performanceDurationTime}+' minutes'" class="distribution-title">duration
+                    tme</p>
+            </div>
+            <div>
+                <form action="/schedule" target="_blank">
+                    <button class="button">Book ticket</button>
+                </form>
+            </div>
+        </div>
     </section>
 </main>
 </body>

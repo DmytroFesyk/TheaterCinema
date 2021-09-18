@@ -30,7 +30,7 @@
           </a>
           <ul class="navigation">
             <li class="navigation_title">
-              <a class="navigation_title" href="/schedule.html">
+              <a class="navigation_title" href="/schedule">
                 Schedule
               </a>
             </li>
@@ -57,46 +57,46 @@
         <section class="section">
           <h1 class="hero_title">NOW SHOWING</h1>
           <ul class="performance-list">
-            <li class="films_title">
-              <a href="/schedule.html">
+            <li th:each="performance : ${performances}"class="films_title">
+              <a th:href="@{/performances/{id}(id=${performance.performanceId})}">
                 <img
-                  class="img"
-                  src="/images/12439b0a9fc06aba76be3c42a3b1f2.jpg"
-                  alt=""
-                  style="width: 300px"
+                        class="img"
+                        th:src="@{${performance.performanceImgLink}}"
+                        alt="Film View"
+                        style="width: 300px"
                 />
               </a>
             </li>
-            <li class="films_title">
-              <a href="/schedule.html">
-                <img
-                  class="img"
-                  src="/images/143753.jpg"
-                  alt=""
-                  style="width: 300px"
-                />
-              </a>
-            </li>
-            <li class="films_title">
-              <a href="/schedule.html">
-                <img
-                  class="img"
-                  src="/images/7f5918c161a7207d0d542a67e5a727ec.jpg"
-                  alt=""
-                  style="width: 300px"
-                />
-              </a>
-            </li>
-            <li class="films_title">
-              <a href="/schedule.html">
-                <img
-                  class="img"
-                  src="/images/d113a9f1e0f69ea589168d6206ddff0c.jpeg"
-                  alt=""
-                  style="width: 300px"
-                />
-              </a>
-            </li>
+<!--            <li class="films_title">-->
+<!--              <a href="/schedule.html">-->
+<!--                <img-->
+<!--                  class="img"-->
+<!--                  src="/images/143753.jpg"-->
+<!--                  alt=""-->
+<!--                  style="width: 300px"-->
+<!--                />-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="films_title">-->
+<!--              <a href="/schedule.html">-->
+<!--                <img-->
+<!--                  class="img"-->
+<!--                  src="/images/7f5918c161a7207d0d542a67e5a727ec.jpg"-->
+<!--                  alt=""-->
+<!--                  style="width: 300px"-->
+<!--                />-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="films_title">-->
+<!--              <a href="/schedule.html">-->
+<!--                <img-->
+<!--                  class="img"-->
+<!--                  src="/images/d113a9f1e0f69ea589168d6206ddff0c.jpeg"-->
+<!--                  alt=""-->
+<!--                  style="width: 300px"-->
+<!--                />-->
+<!--              </a>-->
+<!--            </li>-->
           </ul>
         </section>
       </div>

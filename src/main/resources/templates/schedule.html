@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,108 +18,72 @@
     />
   </head>
   <body>
-    <header class="header">
-      <div class="container hero-schedule">
-        <nav class="nav">
-          <a href="./index.html">
-            <img
-              class="images"
-              src="./images/deposicinema-logo.jpg"
-              width="70"
-            />
-          </a>
-          <ul class="navigation">
-            <li class="navigation_title">
-              <a class="navigation_title" href="./schedule.html">
-                Расписание
-              </a>
-            </li>
-            <li class="navigation_title">
-              <a class="navigation_title" href="./films.html"> Фильмы</a>
-            </li>
-            <li class="navigation_title">
-              <a class="navigation_title" href=""> Администрирование </a>
-            </li>
-          </ul>
-          <ul class="navigation_link">
-            <li class="navigation_title">
-              <a class="navigation_title" href=""> Вход </a>
-            </li>
-            <li class="navigation_title vl">
-              <a class="navigation_title" href=""> Регистрация </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <header class="header">
+    <div class="container hero-schedule">
+      <nav class="nav">
+        <a href="/">
+          <img
+                  class="images"
+                  src="/images/deposicinema-logo.jpg"
+                  width="70"
+          />
+        </a>
+        <ul class="navigation">
+          <li class="navigation_title">
+            <a class="navigation_title" href="/schedule">
+              Schedule
+            </a>
+          </li>
+          <li class="navigation_title">
+            <a class="navigation_title" href="/performances">Movies</a>
+          </li>
+          <li class="navigation_title">
+            <a class="navigation_title" href="">Administration tools</a>
+          </li>
+        </ul>
+        <ul class="navigation_link">
+          <li class="navigation_title">
+            <a class="navigation_title" href="">Sing inSing in</a>
+          </li>
+          <li class="navigation_title vl">
+            <a class="navigation_title" href="">Join us</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
     <main>
       <div>
         <section class="section-schedule">
-          <div class="container">
-            <h1 class="hero-schedule_title">Сегодня в кино</h1>
-            <ul class="films-schedule">
-              <div class="films-schedule_title">
+          <div th:each="element:${scheduleFullMap}" class="container">
+            <ul  class="films-schedule">
+              <div th:each="performance: ${element.key}" class="films-schedule_title">
                 <li class="films_title_img">
-                  <a href="./schedule.html">
+                  <a th:href="@{/performances/{id}(id=${performance.performanceId})}">
                     <img
-                      class="img"
-                      src="./images/12439b0a9fc06aba76be3c42a3b1f2.jpg"
-                      alt=""
-                      style="width: 300px"
+                            class="img"
+                            th:src="@{${performance.performanceImgLink}}"
+                            alt="Film View"
+                            style="width: 300px"
                     />
                   </a>
                 </li>
                 <div>
-                  <h3 class="title-schedule">Чернобыль</h3>
-                  <p class="title-schedule_link">IMAX, 3D</p>
-                </div>
-              </div>
-              <div class="films-schedule_title">
-                <li class="films_title_img">
-                  <a href="./schedule.html">
-                    <img
-                      class="img"
-                      src="./images/143753.jpg"
-                      alt=""
-                      style="width: 300px"
-                    />
+                  <a th:href="@{/performances/{id}(id=${performance.performanceId})}">
+                  <h3 th:text="${performance.performanceTitle}" class="title-schedule">Title</h3>
                   </a>
-                </li>
-                <div>
-                  <h3 class="title-schedule">Мажор</h3>
-                  <p class="title-schedule_link">CINETECH+, 2D</p>
-                </div>
-              </div>
-              <div class="films-schedule_title">
-                <li class="films_title_img">
-                  <a href="./schedule.html">
-                    <img
-                      class="img"
-                      src="./images/7f5918c161a7207d0d542a67e5a727ec.jpg"
-                      alt=""
-                      style="width: 300px"
-                    />
-                  </a>
-                </li>
-                <div>
-                  <h3 class="title-schedule">Босс-молокосос 2</h3>
-                  <p class="title-schedule_link">IMAX, 3D</p>
-                </div>
-              </div>
-              <div class="films-schedule_title">
-                <li class="films_title_img">
-                  <a href="./schedule.html">
-                    <img
-                      class="img"
-                      src="./images/d113a9f1e0f69ea589168d6206ddff0c.jpeg"
-                      alt=""
-                      style="width: 300px"
-                    />
-                  </a>
-                </li>
-                <div>
-                  <h3 class="title-schedule">Главный Герой</h3>
-                  <p class="title-schedule_link">CINETECH+, 2D</p>
+                  <div th:each="seanceMap:${element.value}">
+                   <h2 th:text="${seanceMap.key}" class="title-schedule_date">Seance date</h2>
+                    <ul>
+                      <li th:each="seance:${seanceMap.value}"  class="title-schedule_date">
+                        <a href="" th:text="${seance.time}">
+                          />
+                        </a>
+                      </li>
+                    </ul>
+
+                  </div>
+
                 </div>
               </div>
             </ul>

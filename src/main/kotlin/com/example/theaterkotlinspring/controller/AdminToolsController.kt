@@ -1,6 +1,5 @@
 package com.example.theaterkotlinspring.controller
 
-import com.example.theaterkotlinspring.dto.PerformanceDTO
 import com.example.theaterkotlinspring.entity.Actor
 import com.example.theaterkotlinspring.entity.Performance
 import com.example.theaterkotlinspring.entity.Seance
@@ -34,15 +33,12 @@ class AdminToolsController(
     @Value("\${directory.root}")
     lateinit var rootDirectory: String
 
-
-
-
     @GetMapping("/add")
     fun addPerformance(model: Model): String {
-       model.addAttribute("performance",Performance())
+        model.addAttribute("performance", Performance())
         model.addAttribute("actor", Actor())
         model.addAttribute("seance", Seance())
-       model.addAttribute("performances", performanceRepository.findAll())
+        model.addAttribute("performances", performanceRepository.findAll())
         model.addAttribute("actors", actorRepository.findAll())
         return "performances/add"
     }
@@ -53,9 +49,12 @@ class AdminToolsController(
         @RequestParam("fileImage") multipartFile: MultipartFile,
     ): String {
 
-        val fileName = performance.title + ".${multipartFile.originalFilename?.substringAfterLast(".")}"
+        val fileName = performance.title.replace(":", "-", true)
+            .replace(" ", "-", ignoreCase = true)
+            .toLowerCase() +
+                ".${multipartFile.originalFilename?.substringAfterLast(".")}"
         performance.imgLink =
-        FileUtilApp.saveFileAndReturnPathToString(rootDirectory,directoryImgFilms, fileName, multipartFile)
+            FileUtilApp.saveFileAndReturnPathToString(rootDirectory, directoryImgFilms, fileName, multipartFile)
         performanceRepository.save(performance)
         return "redirect:/performances/"
     }

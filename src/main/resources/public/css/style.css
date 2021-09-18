@@ -6,6 +6,7 @@
 }
 ul {
   list-style: none;
+  margin-block-start: 0;
 }
 a {
   text-decoration: none;
@@ -93,6 +94,7 @@ a {
 .section-schedule {
   background-image: url(/images/tmb_197610_8274.jpg);
   background-size: 1921px 2087px;
+  padding-top: 20px
 }
 .performance-list {
   display: flex;
@@ -126,7 +128,7 @@ a {
   letter-spacing: 0.02em;
   color: dodgerblue;
 }
-.title-schedule_link {
+.title-schedule_date {
   font-weight: 500;
   font-size: 20px;
   line-height: 1.142;

@@ -39,8 +39,8 @@
 <h1>Add new seance</h1>
 <form action="/performances/addNewSeance" method="POST" th:object="${seance}">
     <input type="hidden" th:field="*{id}">
-    <p>Date: <input type="date" th:field="*{date}"/></p>
-    <!--        <p>Time: <input type="time" th:field="*{time}" /> </p>-->
+    <p>Date: <input type="datetime-local" th:field="*{localDateTime}"/></p>
+<!--    <p>Time: <input type="time" th:field="*{time}"/></p>-->
     <p>Performance: <select th:field="*{performance}">
         <option th:each="p : ${performances}" th:value="${p.id}" th:text="${p.title}"/>
     </select></p>
